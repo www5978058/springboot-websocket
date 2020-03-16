@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <title>websocket通讯</title>
+</head>
+<script src="https://cdn.staticfile.org/jquery/2.1.1/jquery.min.js"></script>
+<script src="../static/assets/app/websocket.js" th:src="@{/assets/app/websocket.js}"></script>
+
+<body>
+<p>【userId】：<div><input id="userId" name="userId" type="text" value="10"></div>
+<p>【toId】：<div><input id="toId" name="toUserId" type="text" value="20"></div>
+<p>【message】：<div><input id="message" name="message" type="text" value="hello websocket"></div>
+<input onclick="sendMessage()" value="发送消息">
+</body>
+<script>
+    $(function () {
+        ws.openSocket('http://localhost:8080/ws/10');
+    });
+    function sendMessage() {
+        ws.messageDto.toId = 20;
+        ws.messageDto.fromId = 10;
+        ws.messageDto.message = "hello";
+        ws.sendMessage();
+    }
+</script>
+</html>
